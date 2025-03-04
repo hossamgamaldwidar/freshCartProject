@@ -1,0 +1,32 @@
+<div class="heading text-center text-2xl border-t-4 border-green-300 border-b-4 p-3 my-6">
+    <h1>All products</h1>
+    <input [(ngModel)]="searchinput" class="w-[50%] mt-10 mx-auto " type="text" placeholder="search ... ">
+</div>
+<section class="rounded p-4 my-5">
+    <div class="container mx-auto">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            @if(productsdata){
+                @for (product of productsdata| searchpipe: searchinput; track product._id) {
+                    <div class="cartItem product cursor-pointer p-4">
+                        <div [routerLink]='["/product-details", product._id]'>
+                            <div class="mt-4">
+                                <img [src]="product.imageCover" [alt]="product.title">
+                            </div>
+                            <div class="mt-4">
+                                <h2 class="text-main">{{product.category.name}}</h2>
+                                <h1 class="text-xl font-bold">{{ product.title.split(' ').slice(0, 3).join(' ') }}</h1>
+                            </div>
+                            <div class="3">
+                                <h3 class="text-xl">price: {{product.price}}</h3>
+                                <span><i class="fa-solid fa-star"></i>{{product.ratingsAverage}}</span>
+                            </div>
+                        </div>
+                        <div class="btnAddToCart mt-4">
+                            <button (click)="addToCart(product._id)" class="btn-main w-3/4 mx-auto block">+Add to Cart</button>
+                        </div>
+                    </div>
+                    }
+            }
+        </div>
+    </div>
+</section>

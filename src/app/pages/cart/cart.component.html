@@ -1,0 +1,60 @@
+@if (cartItems) {
+@if (cartItems.products.length > 0) {
+<section class="cart w-[80%] mx-auto bg-slate-200 p-5 rounded-xl my-5">
+    <div class="cart__top flex align-middle justify-between w-[100%]">
+        <div class="my-5">
+            <h1 class="text-emerald-400 text-3xl font-bold">Shop cart :</h1>
+            <h3 class="text-xl mt-3">Total Cart Price: {{cartItems.totalCartPrice}}</h3>
+        </div>
+        <div class="flex align-middle ">
+            <button (click)="clearUserCart()" class="btn-main w-full self-center">Remove All</button>
+        </div>
+    </div>
+    <div class="cart__body">
+        <div class="container w-[95%] mx-auto">
+            @if (cartItems) {
+            @for (product of cartItems.products; track product.product._id) {
+            <div
+                class="row flex flex-wrap justify-between items-center my-2 border-b-2 border-emerald-700 bg-white mx-auto rounded-md">
+                <div class="cart-body-img w-1/5 rounded-md">
+                    <img class="object-contain w-full rounded-md" [src]="product.product.imageCover" alt="">
+                </div>
+                <div class="cart-body-details w-1/2 ">
+                    <h2 class="my-1 font-bold text-2xl">
+                        {{product.product.title}}
+                    </h2>
+                    <p class="text-emerald-600 my-3 font-bold text-xl">
+                        price : {{product.price}}
+                    </p>
+                    <button (click)="removeSpecificItem(product.product._id)"
+                        class="btn bg-red-500 p-2 text-xl text-white rounded-md">remove</button>
+                </div>
+                <div class="cart-product-count flex w-1/5 justify-evenly items-center">
+                    <i (click)="updateCartProductQuantity(product.product._id , product.count+1)"
+                        class="text-emerald-500 fa-regular fa-square-plus hover:scale-125 transition-all cursor-pointer"></i>
+                    <p class="text-xl">{{product.count}}</p>
+                    @if (product.count >1) {
+                    <i (click)="updateCartProductQuantity(product.product._id , product.count-1)"
+                        class="text-emerald-500 fa-regular fa-square-minus hover:scale-125 transition-all cursor-pointer"></i>
+                    }
+                </div>
+            </div>
+            }
+            }
+            <button [routerLink]="['/checkout',cartItems._id]" class="btn-main w-full">Check Out</button>
+        </div>
+    </div>
+</section>
+}
+}
+@if (cartItems) {
+@if (cartItems.products.length <= 0) { <section class="cart w-[80%] mx-auto bg-slate-200 p-5 rounded-xl my-5">
+    <div class="empty bg-slate-200 rounded-md p-10 flex flex-col justify-center text-center">
+        <h1 class="text-emerald-400 text-4xl font-bold">Your Shopping Cart is Empty!</h1>
+        <div class="mt-5">
+            <a routerLink="/home" class="btn-main w-full">Continue Shopping</a>
+        </div>
+    </div>
+    </section>
+    }
+    }

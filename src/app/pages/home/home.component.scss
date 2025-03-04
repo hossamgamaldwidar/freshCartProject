@@ -1,0 +1,7 @@
+.btnAddToCart{
+    transform: translatey(90px);
+    transition: .5s;
+}
+.cartItem:hover .btnAddToCart{
+    transform: translateY(0);
+}

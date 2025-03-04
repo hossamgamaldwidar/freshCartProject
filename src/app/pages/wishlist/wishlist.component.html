@@ -1,0 +1,24 @@
+<section class="cart w-[80%] mx-auto bg-slate-200 p-5 rounded-xl my-5">
+    <div class="cart__top flex justify-center w-full">
+        <h1 class="text-emerald-400 text-3xl font-bold my-5">The wishlist</h1>
+    </div>
+    <div class="cart__body">
+        <div class="container w-[95%] mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 rounded-lg">
+            @for (item of allUserWishlist; track item._id) {
+                <div class="items flex flex-col justify-center">
+                    <div class=" bg-white p-4 rounded-lg shadow border-b-emerald-400 border-2">
+                        <div class="categorieImg w-full h-[300px] overflow-hidden">
+                            <img [src]="item.imageCover" [alt]="item.title" class="w-full h-[100%] object-contain">
+                        </div>
+                        <h1 class="font-bold text-2xl text-center mt-2">{{item.title}}</h1>
+                        <h2 class="font-bold text-xl text-emerald-400 text-center my-3">Price : {{item.price}}</h2>
+                        <button (click)="removeProductFromWishlist(item._id)" class="text-white rounded-md p-2 w-[40%] bg-red-600 mx-auto block hover:bg-red-800 duration-100">Remove</button>
+                    </div>
+                </div>
+
+            }
+            </div>
+        </div>
+    </div>
+</section>

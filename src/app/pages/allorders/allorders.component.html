@@ -1,0 +1,24 @@
+<section class="cart w-[80%] mx-auto bg-slate-200 p-5 rounded-xl my-5">
+    <div class="cart__top flex items-center justify-between w-full">
+        <h1 class="text-emerald-400 text-3xl font-bold my-5">All Orders</h1>
+    </div>
+    <div class="cart__body">
+        <div class="container w-[95%] mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 rounded-lg">
+                @for (order of userOrders; track $index) {
+                <div class=" bg-white p-4 rounded-lg shadow border-b-emerald-400 border-2"> 
+                        <img src="{{ order.cartItems[0].product.imageCover }}" alt="Product Image" class="w-full object-contain">
+                        <h1 class="font-black text-xl">{{ order.cartItems[0].product.title }}</h1>
+                        <h4 class="font-semibold text-emerald-400">{{ order.cartItems[0].product.brand.name }}</h4>
+                        <h2 class="font-semibold">payment Method Type : {{order.paymentMethodType}}</h2>
+                        <h2 class="font-semibold">Delivered :{{order.isDelivered}}</h2>
+                        <h2 class="font-semibold">Paid : {{order.isPaid}}</h2>
+                        <h2 class="font-semibold pb-3">Price : {{order.totalOrderPrice}}</h2>
+                        <hr class="p-1">
+                        <h2 class="font-semibold">Created at: {{ order.createdAt | date:'fullDate' }}</h2>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

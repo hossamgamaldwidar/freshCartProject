@@ -1,0 +1,74 @@
+<section class="static-carsouel container w-[90%] mx-auto mt-6">
+    <div class="flex flex-wrap">
+        <div class="carsouel w-full md:w-1/2 lg:w-3/4">
+            <owl-carousel-o [options]="productPt">
+                <ng-template carouselSlide><img src="./images/slider-image-1.jpeg"
+                        class="w-full object-cover h-80"></ng-template>
+                <ng-template carouselSlide><img src="./images/slider-image-2.jpeg"
+                        class="w-full object-cover h-80"></ng-template>
+                <ng-template carouselSlide><img src="./images/slider-image-3.jpeg"
+                        class="w-full object-cover h-80"></ng-template>
+            </owl-carousel-o>
+        </div>
+        <div class="slide w-full md:h-1/2 lg:w-1/4">
+            <img src="./images/slider-image-1.jpeg" class="w-full h-40 object-cover">
+            <img src="./images/slider-image-2.jpeg" class="w-full h-40 object-cover">
+
+        </div>
+    </div>
+</section>
+
+<div class="heading text-center text-2xl border-t-4 border-green-300 border-b-4 p-3 my-6">
+    <h1>All Categories</h1>
+</div>
+
+@if (categoriesdata != null && productsdata != null) {
+
+
+<section class="dynamic-carsouel container w-[90%] mx-auto mt-7">
+    <owl-carousel-o [options]="dynamic">
+        @for (category of categoriesdata; track category._id) {
+        <ng-template carouselSlide>
+            <img [src]="category.image" [alt]="category.name" [title]="category.name" class="w-full h-[260px]">
+        </ng-template>
+        }
+    </owl-carousel-o>
+</section>
+
+<div class="heading text-center text-2xl border-t-4 border-green-300 border-b-4 p-3 my-6">
+    <h1>Recommended products</h1>
+    <input [(ngModel)]="searchinput" class="w-[50%] mt-10 mx-auto " type="text" placeholder="search ... ">
+</div>
+
+
+<section class="rounded p-4 my-5">
+    <div class="container mx-auto">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            @for (product of productsdata| searchpipe: searchinput; track product._id) {
+            <div class="cartItem product cursor-pointer p-4 relative">
+                <div class="wishlist p-2 absolute top-0 right-0">
+                    <i (click)="addToWishlist(product._id)" #Wishlist class="text-2xl text-emerald-500 fa-regular fa-star" [attr.data-id]="product._id"></i>
+                </div>
+                <div [routerLink]='["/product-details", product._id]'>
+                    <div class="mt-4">
+                        <img [src]="product.imageCover" [alt]="product.title">
+                    </div>
+                    <div class="mt-4">
+                        <h2 class="text-main">{{product.category.name}}</h2>
+                        <h1 class="text-xl font-bold">{{ product.title.split(' ').slice(0, 3).join(' ') }}</h1>
+                    </div>
+                    <div class="3">
+                        <h3 class="text-xl">price: {{product.price}}</h3>
+                        <span><i class="fa-solid fa-star text-yellow-400 me-2"></i>{{product.ratingsAverage}}</span>
+                    </div>
+                </div>
+                <div class="btnAddToCart mt-4">
+                    <button (click)="addToCart(product._id)" class="btn-main w-3/4 mx-auto block">+Add to Cart</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+}

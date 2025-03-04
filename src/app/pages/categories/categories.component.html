@@ -1,0 +1,38 @@
+<div class="allcategories flex">
+    <section class="categories w-[70%] mx-auto bg-slate-200 p-5 rounded-xl my-5">
+        <div class="categories__top flex justify-center w-full">
+            <h1 class="text-emerald-400 text-3xl font-bold my-5">All Categories</h1>
+        </div>
+        <div class="categories__body">
+            <div class="container w-[95%] mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 rounded-lg">
+                    @for (categorie of categories; track categorie._id) {
+                        <div class="items flex flex-col justify-center">
+                            <div class=" bg-white p-4 rounded-lg shadow border-b-emerald-400 border-2">
+                                <div class="categorieImg w-full h-[300px] overflow-hidden">
+                                    <img [src]="categorie.image" [alt]="categorie.name" class="w-full h-[100%] object-contain">
+                                </div>
+                                <h1 class="font-black text-xl text-center mt-2">{{categorie.name}}</h1>
+                                <h4 class="font-semibold text-emerald-400 text-center">{{categorie.slug}}</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="SubCategories w-[20%] mx-auto bg-slate-200 p-5 rounded-xl my-5">
+        <div class="SubCategories__top flex flex-col justify-center w-full">
+            <h1 class="text-emerald-400 text-3xl font-bold my-5">Sup Categories</h1>
+            <div class="SubCategories__body">
+                <div class="supItem">
+                    @for (item of supCategories; track $index) {
+                        <div class="supItem__item my-3 p-3 rounded-md bg-white hover:bg-emerald-400 duration-300">
+                            <h6 class="text-lg ">{{item.name}}</h6>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

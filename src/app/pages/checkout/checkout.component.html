@@ -1,0 +1,85 @@
+<section class="w-2/3 mx-auto bg-slate-200 my-8 p-5 rounded-lg">
+    <form [formGroup]="chechoutForm" (ngSubmit)="detailsSubmit()">
+
+        <div class="my-5">
+            <label for="details" class="block mb-2 text-sm font-medium text-gray-900 ">Details</label>
+            <input formControlName="details" type="text" id="details"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                [class]="{
+                    'valid' : !chechoutForm.get('details')?.errors && chechoutForm.get('details')?.touched,
+                    'invalid' : chechoutForm.get('details')?.errors && chechoutForm.get('details')?.touched
+                }">
+            @if (chechoutForm.get('details')?.errors && chechoutForm.get('details')?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+                role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if(chechoutForm.get('details')?.getError('required')){<li>details is required</li>}
+                    </ul>
+                </div>
+
+            </div>
+            }
+        </div>
+
+        <div class="my-5">
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 ">Phone</label>
+            <input formControlName="phone" type="tel" id="phone"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                [class]="{
+                    'valid' : !chechoutForm.get('phone')?.errors && chechoutForm.get('phone')?.touched,
+                    'invalid' : chechoutForm.get('phone')?.errors && chechoutForm.get('phone')?.touched
+                }">
+            @if (chechoutForm.get('phone')?.errors && chechoutForm.get('phone')?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+                role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if(chechoutForm.get('phone')?.getError('required')){<li>phone is required</li>}
+                    </ul>
+                </div>
+
+            </div>
+            }
+        </div>
+        <div class="my-5">
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 ">City</label>
+            <input formControlName="city" type="text" id="city"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                [class]="{
+                    'valid' : !chechoutForm.get('city')?.errors && chechoutForm.get('city')?.touched,
+                    'invalid' : chechoutForm.get('city')?.errors && chechoutForm.get('city')?.touched
+                }">
+            @if (chechoutForm.get('city')?.errors && chechoutForm.get('city')?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 "
+                role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @if(chechoutForm.get('city')?.getError('required')){<li>city is required</li>}
+                    </ul>
+                </div>
+
+            </div>
+            }
+        </div>
+        <button class="btn-main w-full">Payment <i class="fa-brands fa-cc-visa"></i></button>
+    </form>
+</section>
